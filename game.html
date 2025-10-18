@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>משחק פנטומימה עם סינון לזוכים</title>
+  <link rel="stylesheet" href="./game.css">
+
+</head>
+
+<body>
+  <!-- כותרת למעלה לשם הזוג -->
+  <h1 id="currentTeamHeader" style="text-align:center; font-size: 3rem; margin-top: 10px; display: none;"></h1>
+
+  <!-- שכבה למעבר בין זוגות -->
+  <div id="nextTeamOverlay">
+    <div id="previous-score" class="previous-score" style="font-size: 22px; margin-top: 15px; color: #fff;"></div>
+    <h2 id="nextTeamName" style="font-size: 3rem; animation: fadeIn 1s ease;"></h2>
+    <button id="startNextTeamBtn" style="margin-top: 20px; padding: 15px 30px; font-size: 1.5rem; cursor: pointer;">התחל
+      משחק</button>
+  </div>
+  <!-- time out -->
+  <!-- <div id="timeOut">
+    <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
+
+  </div> -->
+
+  <div class="container" id="mainGameContainer">
+    <div class="left-panel">
+      <div class="image-container" id="imageContainer">
+        <div class="prompt-text" id="promptText">הוסף צוותים, בחר נושא והתחל משחק</div>
+      </div>
+      <div id="timeOut">
+        <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
+      </div>
+      <div class="timer-vertical">
+        <div class="timer-fill" id="timerFill"></div>
+      </div>
+      <div class="controls">
+        <button id="correctBtn" disabled>נכון ✅</button>
+        <button id="passBtn" disabled>עברו ⏭</button>
+        <button id="nextBtn" disabled>זוג הבא ▶️</button>
+        <button id="playSongBtn" style="display:none;">הפעל שיר ▶️</button>
+      </div>
+    </div>
+    <div class="right-panel">
+      <h2>ניהול צוותים</h2>
+      <input type="text" id="teamNameInput" placeholder="שם צוות חדש..." />
+      <button id="addTeamBtn">הוסף צוות</button>
+      <div class="teams-list" id="teamsList"></div>
+
+      <label for="categorySelect">בחר נושא:</label>
+      <select id="categorySelect">
+        <option value="objects" selected>חפצים</option>
+        <option value="songs">שירים</option>
+        <option value="animals">בעלי חיים</option>
+      </select>
+
+      <label for="roundTimeInput">זמן לסיבוב (בשניות):</label>
+      <input type="number" id="roundTimeInput" min="10" step="10" value="60" />
+      <button id="startGameBtn">התחל משחק</button>
+      <button id="resetGameBtn" style="background:#555; margin-top:6px;">אפס משחק</button>
+    </div>
+
+  </div>
+
+  <div id="winnersOverlay">
+    <h2>הזוכים הם:</h2>
+    <ul id="winnersList"></ul>
+    <button id="continueToSongsBtn">המשך לשלב שירים</button>
+  </div>
+
+  <audio id="endSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
+  <audio id="backgroundMusic" src="./080_Back_To_Brass.mp3" loop preload="auto"></audio>
+  <audio id="songAudio" preload="auto"></audio>
+
+
+  <script type="text/javascript" src="./game.js"></script>
+
+</body>
+
+</html>
