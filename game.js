@@ -251,12 +251,13 @@
           clearInterval(timerInterval);
           // backgroundMusic.phase();
           endSound.play();
-          alert('הזמן נגמר!');
           correctBtn.disabled = true;
           passBtn.disabled = true;
           nextBtn.disabled = false;
           playSongBtn.disabled = true;
-          console.log("timerLeft", timerLeft);
+          // console.log("timerLeft", timerLeft);
+          // timeOut.style.display='flex';
+          timeOutFun();
         }
       }, 1000);
     }
@@ -439,7 +440,58 @@
     const nextTeamName = document.getElementById('nextTeamName');
     const startNextTeamBtn = document.getElementById('startNextTeamBtn');
     const timeOut = document.getElementById('timeOut');
+    const timeOutBtn = document.getElementById('timeOutBtn');
+    //timeOut next team
+     function timeOutFun(){
+      if (!gameStarted) return;
+      if (timeLeft > 0) {
+        alert('יש להמתין לסיום הטיימר לפני המעבר לזוג הבא');
+        return;
+      }
+      currentTeamIndex++;
+      currentItemIndex = 0;
 
+      // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
+      if (phase === 'objects' && currentTeamIndex >= teams.length) {
+        showWinnersOverlay();
+        return;
+      }
+
+      // בשלב שירים, אם נגמרו הזוגות - מסיימים משחק
+      if (phase === 'songs' && currentTeamIndex >= teams.length) {
+        alert('המשחק נגמר! תודה שהשתתפתם.');
+        gameStarted = false;
+        imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
+        nextBtn.disabled = true;
+        correctBtn.disabled = true;
+        passBtn.disabled = true;
+        playSongBtn.style.display = 'none';
+        return;
+      }
+
+      // טוענים את הפריטים שנותרו עבור הזוג הבא
+      prepareItems();
+
+      if (currentItems.length === 0) {
+        alert('אין פריטים חדשים להציג לזוג הבא.');
+        correctBtn.disabled = true;
+        passBtn.disabled = true;
+        nextBtn.disabled = false;
+        playSongBtn.style.display = 'none';
+        return;
+      }
+
+      showCurrentItem();
+      renderTeams();
+      prepareNextTeam();
+
+      correctBtn.disabled = false;
+      passBtn.disabled = false;
+      nextBtn.disabled = true;
+      playSongBtn.style.display = 'none';
+
+      // alert(`תור צוות: ${teams[currentTeamIndex]}`);
+    };
     // מציג את שם הצוות הנוכחי למעלה
     function updateHeader() {
       header.textContent = `תור צוות: ${teams[currentTeamIndex]}`;
