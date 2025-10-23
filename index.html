@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>משחק פנטומימה</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #071829;
+            color: #e9f2fb;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            direction: rtl;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-weight: 900;
+            color: #f59e0b;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: 20px;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .buttons button {
+            font-size: 20px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: none;
+            background: #f59e0b;
+            color: #071829;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ffcc00;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .buttons button:hover {
+            background: #d48806;
+            transform: scale(1.05);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 8px #ffcc00;
+            }
+
+            to {
+                text-shadow: 0 0 20px #ffe066;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>ברוכים הבאים למשחק פנטומימה!</h1>
+
+    <p >
+        צחוק, תחרות, תנועה ודמיון – הכול במקום אחד!<br>
+        כל זוג בתורו ינסה לנחש כמה שיותר מילים לפני שהשעון נגמר ⏳
+    </p>
+
+    <div class="buttons">
+        <button onclick="location.href='instructions.html'">הוראות המשחק</button>
+        <button onclick="location.href='game.html'">התחל משחק</button>
+    </div>
+
+    <footer>
+        © כל הזכויות שמורות
+    </footer>
+
+    <!-- מוזיקת רקע -->
+    <audio id="homeMusic" src="./audio/.mp3" loop autoplay></audio>
+
+    <script>
+        const homeMusic = document.getElementById('homeMusic');
+        homeMusic.volume = 0.15;
+        homeMusic.play().catch(() => {
+            console.log('יש צורך באינטראקציה של המשתמש כדי להתחיל מוזיקה');
+        });
+    </script>
+
+</body>
+
+</html>

@@ -404,16 +404,16 @@
       // שומרים ניקוד מהחפצים - לא מאפסים
       prepareItems();
       renderTeams();
-      // showCurrentItem();
-      // startTimer();
+       showCurrentItem();
+       startTimer();
 
-      // correctBtn.disabled = false;
-      // passBtn.disabled = false;
-      // nextBtn.disabled = true;
-      // playSongBtn.style.display = 'none';
+      correctBtn.disabled = false;
+      passBtn.disabled = false;
+      nextBtn.disabled = true;
+      playSongBtn.style.display = 'none';
       timerFill.style.height = '100%';
       imageContainer.innerHTML = '<div class="prompt-text">התחל משחק</div>';
-      // teamsListDiv.innerHTML = '';
+      teamsListDiv.innerHTML = '';
       nextBtn.disabled = true;
       correctBtn.disabled = true;
       passBtn.disabled = true;
