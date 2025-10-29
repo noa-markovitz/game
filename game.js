@@ -31,7 +31,7 @@ const categories = {
     'images/cat.jpg', 'images/dog.jpg', 'images/elephant.jpg', 'images/lion.jpg', 'images/bird.jpg', 'images/fish.jpg'
   ]
 };
-
+let second=false;
 let teams = [];
 let scores = {};
 let currentTeamIndex = 0;
@@ -483,10 +483,14 @@ function timeOutFun() {
     return;
   }
   currentTeamIndex++;
+  if(currentTeamIndex>=teams.length && !second){
+    currentTeamIndex=0;
+    second=true;
+  }
   currentItemIndex = 0;
 
   // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
-  if (phase === 'objects' && currentTeamIndex >= teams.length) {
+  if (phase === 'objects' && currentTeamIndex >= teams.length && second) {
     showWinnersOverlay();
     return;
   }
@@ -546,6 +550,10 @@ function showNextTeamOverlay() {
     nextTeamName.textContent = `הצוות הבא: ${teams[currentTeamIndex]}`;
     nextTeamOverlay.style.display = 'flex';
   }
+  // else{
+  //   nextTeamName.textContent = `הצוות הבא: ${teams[currentTeamIndex]}`;
+  //   nextTeamOverlay.style.display = 'flex';
+  // }
 }
 
 
