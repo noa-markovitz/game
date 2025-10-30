@@ -356,7 +356,7 @@ nextBtn.addEventListener('click', () => {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winners)
+    localStorage.setItem('winner', winner);
     window.href = 'gameOver.html';
     // imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
     nextBtn.disabled = true;
@@ -501,7 +501,7 @@ async function timeOutFun() {
     return;
   }
   currentTeamIndex++;
-  if (currentTeamIndex >= teams.length && !second) {
+  if (phase === 'objects' &&currentTeamIndex >= teams.length && !second) {
     nextlevel.style.display = 'flex';
     await new Promise(r => setTimeout(r, 20000))
         nextlevel.style.display = 'none';
@@ -524,8 +524,9 @@ async function timeOutFun() {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winners)
-    window.href = 'gameOver.html';    nextBtn.disabled = true;
+    localStorage.setItem('winner', winner);
+   window.location.href = "gameOver.html";
+    nextBtn.disabled = true;
     correctBtn.disabled = true;
     passBtn.disabled = true;
     playSongBtn.style.display = 'none';
