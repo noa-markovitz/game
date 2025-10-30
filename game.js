@@ -31,7 +31,7 @@ const categories = {
     'images/cat.jpg', 'images/dog.jpg', 'images/elephant.jpg', 'images/lion.jpg', 'images/bird.jpg', 'images/fish.jpg'
   ]
 };
-let second=false;
+let second = false;
 let teams = [];
 let scores = {};
 let currentTeamIndex = 0;
@@ -74,6 +74,17 @@ const pauseBtn = document.getElementById('pauseBtn');
 const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
 // הוספת צוותים
+// document.addEventListener('DOMContentLoaded', function() {
+//   const paid = localStorage.getItem('paidForGame');
+//   if (paid === 'true') {
+//     // אפשר להמשיך ולהציג את המשחק
+//     console.log('התשלום מאומת — כאן נטען המשחק');
+//     // … קוד המשחק …
+//   } else {
+//     // אם לא שילם – החזר לדף התשלום
+//     window.location.href = 'payment.html';
+//   }
+// });
 addTeamBtn.addEventListener('click', () => {
   const name = teamNameInput.value.trim();
   if (!name) return showMessage('אנא הכנס שם צוות');
@@ -341,8 +352,13 @@ nextBtn.addEventListener('click', () => {
   if (phase === 'songs' && currentTeamIndex >= teams.length) {
     gameStarted = false;
     startGameBtn.style.disabled = 'false';
-
-    imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
+    const sorted = [...teams].sort((a, b) => scores[b] - scores[a]);
+    const topCount = 1
+    const threshold = scores[sorted[topCount - 1]];
+    winner = sorted.filter(name => scores[name] >= threshold);
+    localStorage.setItem('winner', winners)
+    window.href = 'gameOver.html';
+    // imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
     nextBtn.disabled = true;
     correctBtn.disabled = true;
     passBtn.disabled = true;
@@ -402,17 +418,17 @@ function showWinnersOverlay() {
 
   // מחזיר את כל מי שיש לו ניקוד >= לסף (כולל שוויון)
   winners = sorted.filter(name => scores[name] >= threshold);
-  teams=winners;
+  teams = winners;
 
-winnersList.innerHTML = '';
-winners.forEach(w => {
-  const li = document.createElement('li');
-  li.textContent = `${w} - ניקוד: ${scores[w]}`;
-  winnersList.appendChild(li);
-});
+  winnersList.innerHTML = '';
+  winners.forEach(w => {
+    const li = document.createElement('li');
+    li.textContent = `${w} - ניקוד: ${scores[w]}`;
+    winnersList.appendChild(li);
+  });
 
-winnersOverlay.classList.add('show');
-mainGameContainer.style.display = 'none';
+  winnersOverlay.classList.add('show');
+  mainGameContainer.style.display = 'none';
 }
 
 continueToSongsBtn.addEventListener('click', () => {
@@ -471,23 +487,29 @@ roundTimeInput.addEventListener('change', () => {
 });
 const header = document.getElementById('currentTeamHeader');
 const nextTeamOverlay = document.getElementById('nextTeamOverlay');
+const nextlevel = document.getElementById('nextlevel');
+
 const nextTeamName = document.getElementById('nextTeamName');
 const startNextTeamBtn = document.getElementById('startNextTeamBtn');
 const timeOut = document.getElementById('timeOut');
 const timeOutBtn = document.getElementById('timeOutBtn');
 //timeOut next team
-function timeOutFun() {
+async function timeOutFun() {
   if (!gameStarted) return;
   if (timeLeft > 0) {
     showMessage('יש להמתין לסיום הטיימר לפני המעבר לזוג הבא', 'error');
     return;
   }
   currentTeamIndex++;
-  if(currentTeamIndex>=teams.length && !second){
-    currentTeamIndex=0;
-    second=true;
+  if (currentTeamIndex >= teams.length && !second) {
+    nextlevel.style.display = 'flex';
+    await new Promise(r => setTimeout(r, 20000))
+        nextlevel.style.display = 'none';
+
+    currentTeamIndex = 0;
+    second = true;
   }
-  currentItemIndex = 0;
+  // currentItemIndex = 0;
 
   // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
   if (phase === 'objects' && currentTeamIndex >= teams.length && second) {
@@ -498,8 +520,12 @@ function timeOutFun() {
   // בשלב שירים, אם נגמרו הזוגות - מסיימים משחק
   if (phase === 'songs' && currentTeamIndex >= teams.length) {
     gameStarted = false;
-    imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
-    nextBtn.disabled = true;
+    const sorted = [...teams].sort((a, b) => scores[b] - scores[a]);
+    const topCount = 1
+    const threshold = scores[sorted[topCount - 1]];
+    winner = sorted.filter(name => scores[name] >= threshold);
+    localStorage.setItem('winner', winners)
+    window.href = 'gameOver.html';    nextBtn.disabled = true;
     correctBtn.disabled = true;
     passBtn.disabled = true;
     playSongBtn.style.display = 'none';

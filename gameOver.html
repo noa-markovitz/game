@@ -123,9 +123,7 @@
 <h1>🏆 המנצחים!!</h1>
  
   <div class="winner-box">
-<div id="winner1" class="winner-name"></div>
-<div id="winner2" class="winner-name" style="animation-delay: 0.8s;"></div>
-<div id="winner3" class="winner-name" style="animation-delay: 1.5s;"></div>
+<div id="winner1" class="winner-name" style="animation-delay: 1.2s;"></div>
 <div id="winnerScore" class="winner-score"></div>
 </div>
  
@@ -139,15 +137,9 @@
  
   <script>
     // --- הצגת שמות מנצחים (נטענים מהמשחק הראשי) ---
-    const winners = JSON.parse(localStorage.getItem('topWinners')) || [
-      { name: 'צוות דוגמה 1', score: 150 },
-      { name: 'צוות דוגמה 2', score: 120 },
-      { name: 'צוות דוגמה 3', score: 100 }
-    ];
+    const winners = JSON.parse(localStorage.getItem('winner'));
  
-    document.getElementById('winner1').textContent = `🥇 ${winners[0].name}`;
-    document.getElementById('winner2').textContent = `🥈 ${winners[1].name}`;
-    document.getElementById('winner3').textContent = `🥉 ${winners[2].name}`;
+    document.getElementById('winner1').textContent = `🥇 ${winners[0]}`;
     document.getElementById('winnerScore').textContent = `💫 כל הכבוד לכל המשתתפים!`;
  
     // --- קונפטי ---

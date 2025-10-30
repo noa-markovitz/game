@@ -181,6 +181,7 @@
 </head>
 
 <body>
+    <audio id="startmusic" src="./start.mp3" loop preload="auto"></audio>
 
     <!-- אייקונים מרחפים ברקע -->
     <div class="floating-icons">
@@ -207,7 +208,7 @@
 
     <div class="buttons">
         <button class="btn" onclick="window.location.href='instructions.html'">📘 הוראות המשחק</button>
-        <button class="btn" onclick="window.location.href='game.html'">🎮 התחל לשחק עכשיו!</button>
+        <button class="btn" onclick="window.location.href='payment.html'">🎮 התחל לשחק עכשיו!</button>
     </div>
 
     <footer>
@@ -215,10 +216,31 @@
     </footer>
 
     <!-- מוזיקת רקע רגועה -->
-    <!-- <audio autoplay loop volume="0.3">
-<source src="background.mp3" type="audio/mpeg">
-    הדפדפן שלך לא תומך בניגון שמע.
-</audio> -->
+<audio id="bgAudio" loop playsinline preload="auto">
+<source src="./start.mp3" type="audio/mpeg">
+  הדפדפן לא תומך בתגית audio.
+</audio>
+ 
+<script>
+  const audio = document.getElementById('bgAudio');
+ 
+  // ניסיון להשמיע מיד
+  audio.play().then(() => {
+    // הצליח (ייתכן שההשמעה היתה במוט)
+    console.log('Playing automatically');
+  }).catch((err) => {
+    // נחסם — נציג כפתור פשוט למשתמש
+    console.log('Autoplay blocked:', err);
+    const btn = document.createElement('button');
+    btn.textContent = 'לחצו להשמיע את הצליל';
+    btn.style.cssText = 'position:fixed;bottom:16px;right:16px;padding:10px 12px;font-size:16px;z-index:9999;';
+    btn.onclick = () => {
+      audio.play().catch(e => console.error('Play failed after user click', e));
+      btn.remove();
+    };
+    document.body.appendChild(btn);
+  });
+</script>
 </body>
 
 </html>
