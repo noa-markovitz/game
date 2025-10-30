@@ -137,9 +137,9 @@
  
   <script>
     // --- הצגת שמות מנצחים (נטענים מהמשחק הראשי) ---
-    const winners = JSON.parse(localStorage.getItem('winner'));
+    const winners = localStorage.getItem('winner');
  
-    document.getElementById('winner1').textContent = `🥇 ${winners[0]}`;
+    document.getElementById('winner1').textContent = `🥇 ${winners}`;
     document.getElementById('winnerScore').textContent = `💫 כל הכבוד לכל המשתתפים!`;
  
     // --- קונפטי ---
