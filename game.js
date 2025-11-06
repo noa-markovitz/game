@@ -74,17 +74,19 @@ const pauseBtn = document.getElementById('pauseBtn');
 const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
 // הוספת צוותים
-// document.addEventListener('DOMContentLoaded', function() {
-//   const paid = localStorage.getItem('paidForGame');
-//   if (paid === 'true') {
-//     // אפשר להמשיך ולהציג את המשחק
-//     console.log('התשלום מאומת — כאן נטען המשחק');
-//     // … קוד המשחק …
-//   } else {
-//     // אם לא שילם – החזר לדף התשלום
-//     window.location.href = 'payment.html';
-//   }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+  const paid = sessionStorage.getItem('paidForGame');
+  console.log(paid);
+  
+  if (paid === 'true') {
+    // אפשר להמשיך ולהציג את המשחק
+    console.log('התשלום מאומת — כאן נטען המשחק');
+    // … קוד המשחק …
+  } else {
+    // אם לא שילם – החזר לדף התשלום
+    window.location.href = 'payment.html';
+  }
+});
 addTeamBtn.addEventListener('click', () => {
   const name = teamNameInput.value.trim();
   if (!name) return showMessage('אנא הכנס שם צוות');
@@ -356,7 +358,7 @@ nextBtn.addEventListener('click', () => {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winner);
+    sessionStorage.setItem('winner', winner);
     window.href = 'gameOver.html';
     // imageContainer.innerHTML = '<div class="prompt-text">המשחק נגמר</div>';
     nextBtn.disabled = true;
@@ -524,7 +526,7 @@ async function timeOutFun() {
     const topCount = 1
     const threshold = scores[sorted[topCount - 1]];
     winner = sorted.filter(name => scores[name] >= threshold);
-    localStorage.setItem('winner', winner);
+    sessionStorage.setItem('winner', winner);
    window.location.href = "gameOver.html";
     nextBtn.disabled = true;
     correctBtn.disabled = true;
