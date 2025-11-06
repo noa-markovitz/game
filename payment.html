@@ -124,7 +124,7 @@
     // הגדרות — החליפי לפי הצורך
     const AMOUNT = '2.00'; // סכום בשקלים
     const CURRENCY = 'ILS';
-    const GAME_URL = 'https://noa-markovitz.github.io/game/'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
+    const GAME_URL = 'https://noa-markovitz.github.io/game/game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
 
     // הצגת המייל באופן דינמי
@@ -164,7 +164,7 @@
             localStorage.setItem('paidForGame', 'true');
     localStorage.setItem('orderID', data.orderID);
           // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
-          window.location.href = GAME_URL + '?paid=1&orderID=' + encodeURIComponent(orderId);
+          window.location.href = GAME_URL;
         }).catch(function(err) {
           // שגיאה בלכידת תשלום
           alert('התשלום לא הושלם בהצלחה. אם הבעיה נמשכת פנו ל: ' + SUPPORT_EMAIL);
