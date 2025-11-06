@@ -75,7 +75,7 @@ const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
 // הוספת צוותים
 document.addEventListener('DOMContentLoaded', function() {
-  const paid = localStorage.getItem('paidForGame');
+  const paid = sessionStorage.getItem('paidForGame');
   if (paid === 'true') {
     // אפשר להמשיך ולהציג את המשחק
     console.log('התשלום מאומת — כאן נטען המשחק');
