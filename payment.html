@@ -118,15 +118,15 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AazuZz8j61b15i80RzjF3qUjC5Q0JqJMG44MCHisD08ts6QcveX4MHOOEQHvRKiLIMX1IXJB0ThK2eYO&currency=ILS"></script>
 
   <script>
-    if (localStorage.getItem('paidForGame') === 'true') {
-  window.location.href = "https://noa-markovitz.github.io/game/";
-}
+ 
     // הגדרות — החליפי לפי הצורך
     const AMOUNT = '2.00'; // סכום בשקלים
     const CURRENCY = 'ILS';
     const GAME_URL = 'https://noa-markovitz.github.io/game/game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
-
+   if (localStorage.getItem('paidForGame') === 'true') {
+  window.location.href = GAME_URL;
+}
     // הצגת המייל באופן דינמי
     document.getElementById('supportEmail').href = 'mailto:' + SUPPORT_EMAIL;
     document.getElementById('supportEmail').textContent = SUPPORT_EMAIL;
