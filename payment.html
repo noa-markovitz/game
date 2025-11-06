@@ -124,7 +124,7 @@
     const CURRENCY = 'ILS';
     const GAME_URL = 'https://noa-markovitz.github.io/game/game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
-   if (localStorage.getItem('paidForGame') === 'true') {
+   if (sessionStorage.getItem('paidForGame') === 'true') {
     console.log("i pay");
     
   window.location.href = GAME_URL;
@@ -163,8 +163,8 @@
           // אבל נבצע הפנייה ישירה לדף המשחק
           // ניתן להעביר פרמטרים ב-querystring אם צריך (למשל: orderID)
           const orderId = data.orderID;
-            localStorage.setItem('paidForGame', 'true');
-    localStorage.setItem('orderID', data.orderID);
+            sessionStorage.setItem('paidForGame', 'true');
+    sessionStorage.setItem('orderID', data.orderID);
           // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
           window.location.href = GAME_URL;
         }).catch(function(err) {
