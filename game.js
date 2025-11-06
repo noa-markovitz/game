@@ -74,17 +74,17 @@ const pauseBtn = document.getElementById('pauseBtn');
 const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
 // הוספת צוותים
-// document.addEventListener('DOMContentLoaded', function() {
-//   const paid = localStorage.getItem('paidForGame');
-//   if (paid === 'true') {
-//     // אפשר להמשיך ולהציג את המשחק
-//     console.log('התשלום מאומת — כאן נטען המשחק');
-//     // … קוד המשחק …
-//   } else {
-//     // אם לא שילם – החזר לדף התשלום
-//     window.location.href = 'payment.html';
-//   }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+  const paid = localStorage.getItem('paidForGame');
+  if (paid === 'true') {
+    // אפשר להמשיך ולהציג את המשחק
+    console.log('התשלום מאומת — כאן נטען המשחק');
+    // … קוד המשחק …
+  } else {
+    // אם לא שילם – החזר לדף התשלום
+    window.location.href = 'https://noa-markovitz.github.io/game/payment.html';
+  }
+});
 addTeamBtn.addEventListener('click', () => {
   const name = teamNameInput.value.trim();
   if (!name) return showMessage('אנא הכנס שם צוות');
