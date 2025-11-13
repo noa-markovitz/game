@@ -85,7 +85,7 @@
       <div class="logo">משחק</div>
       <div>
         <h1 id="pay-title">קנה גישה למשחק</h1>
-        <p class="lead">תשלום חד-פעמי לפתיחת המשחק שנוצר עבורך.</p>
+        <p class="lead">תשלום חד-פעמי לפתיחת המשחק.</p>
       </div>
     </div>
 
@@ -114,18 +114,21 @@
   </div>
 
   <!-- החליפי את YOUR_CLIENT_ID ב-Client ID שלך מ-PayPal -->
+
   <script src="https://www.paypal.com/sdk/js?client-id=AazuZz8j61b15i80RzjF3qUjC5Q0JqJMG44MCHisD08ts6QcveX4MHOOEQHvRKiLIMX1IXJB0ThK2eYO&currency=ILS"></script>
 
   <script>
-    if (sessionStorage.getItem('paidForGame') === 'true') {
-  window.location.href = "https://noa-markovitz.github.io/game/";
-}
+ 
     // הגדרות — החליפי לפי הצורך
     const AMOUNT = '2.00'; // סכום בשקלים
     const CURRENCY = 'ILS';
-    const GAME_URL = 'https://noa-markovitz.github.io/game/'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
+    const GAME_URL = 'https://noa-markovitz.github.io/game/game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
-
+   if (sessionStorage.getItem('paidForGame') === 'true') {
+    console.log("i pay");
+    
+  window.location.href = GAME_URL;
+}
     // הצגת המייל באופן דינמי
     document.getElementById('supportEmail').href = 'mailto:' + SUPPORT_EMAIL;
     document.getElementById('supportEmail').textContent = SUPPORT_EMAIL;
@@ -163,7 +166,7 @@
             sessionStorage.setItem('paidForGame', 'true');
     sessionStorage.setItem('orderID', data.orderID);
           // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
-          window.location.href = GAME_URL + '?paid=1&orderID=' + encodeURIComponent(orderId);
+          window.location.href = GAME_URL;
         }).catch(function(err) {
           // שגיאה בלכידת תשלום
           alert('התשלום לא הושלם בהצלחה. אם הבעיה נמשכת פנו ל: ' + SUPPORT_EMAIL);
