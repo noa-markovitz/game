@@ -25,10 +25,13 @@ const categories = {
     { img: './songs/3.jpg', mp3: './audio/song3.mp3' },
     { img: './songs/4.jpg', mp3: './audio/song4.mp3' },
     { img: './songs/5.jpg', mp3: './audio/song5.mp3' },
-    { img: './songs/6.jpg', mp3: './audio/song6.mp3' }
-  ],
-  animals: [
-    'images/cat.jpg', 'images/dog.jpg', 'images/elephant.jpg', 'images/lion.jpg', 'images/bird.jpg', 'images/fish.jpg'
+    { img: './songs/6.jpg', mp3: './audio/song6.mp3' },
+    { img: './songs/7.jpg', mp3: './audio/song6.mp3' },
+    { img: './songs/8.png', mp3: './audio/song6.mp3' },
+    { img: './songs/9.png', mp3: './audio/song6.mp3' },
+    { img: './songs/10.png', mp3: './audio/song6.mp3' },
+    { img: './songs/11.png', mp3: './audio/song6.mp3' }
+
   ]
 };
 let second = false;
