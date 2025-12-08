@@ -29,6 +29,9 @@
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      margin-right: 18%;
+      width: 60%;
+      min-width: fit-content;
 
       #text {
         align-self: flex-end;
@@ -116,7 +119,39 @@
       }
     }
 
-
+    #playNowDiv {
+      display: flex;
+      flex-direction: row;
+      position: fixed;
+      bottom: 0;
+      left: 30px;
+      /* background: linear-gradient(90deg, #ff7b00, #ffb347); */
+      color: white;
+      /* border-radius: 50px; */
+      padding: 15px 25px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      /* box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); */
+      animation: pulse 10s infinite ease-in-out;
+      cursor: pointer;
+      #text{
+        margin-left: 46%;
+      }
+      #playNow {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        background: linear-gradient(90deg, #ff7b00, #ffb347);
+        color: white;
+        border-radius: 50px;
+        padding: 15px 25px;
+        font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s infinite ease-in-out;
+        cursor: pointer;
+      }
+    }
 
     @keyframes pulse {
 
@@ -129,38 +164,39 @@
         transform: scale(1.1);
       }
     }
+
     #messageBox {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(40, 40, 40, 0.9);
-  color: #fff;
-  font-family: 'Assistant', sans-serif;
-  font-size: 1.1rem;
-  padding: 15px 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(40, 40, 40, 0.9);
+      color: #fff;
+      font-family: 'Assistant', sans-serif;
+      font-size: 1.1rem;
+      padding: 15px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
 
-#messageBox.show {
-  opacity: 1;
-}
+    #messageBox.show {
+      opacity: 1;
+    }
 
-#messageBox.success {
-  background: linear-gradient(90deg, #28a745, #34ce57);
-}
+    #messageBox.success {
+      background: linear-gradient(90deg, #28a745, #34ce57);
+    }
 
-#messageBox.error {
-  background: linear-gradient(90deg, #c0392b, #e74c3c);
-}
+    #messageBox.error {
+      background: linear-gradient(90deg, #c0392b, #e74c3c);
+    }
 
-#messageBox.info {
-  background: linear-gradient(90deg, #2980b9, #3498db);
-}
+    #messageBox.info {
+      background: linear-gradient(90deg, #2980b9, #3498db);
+    }
   </style>
 </head>
 
@@ -186,7 +222,7 @@
   <div class="container" id="mainGameContainer">
     <div class="left-panel">
       <div class="image-container" id="imageContainer">
-        <div class="prompt-text" id="promptText">הוסף צוותים, בחר נושא והתחל משחק</div>
+        <div class="prompt-text" id="promptText">הוסף צוותים,   והתחל משחק</div>
       </div>
       <!-- <div id="timeOut">
         <h2 id="timeOutText" style="font-size: 3rem; animation: fadeIn 1s ease;">Time Out / הזמן נגמר!</h2>
@@ -214,7 +250,7 @@
       </select>
 
       <label for="roundTimeInput">זמן לסיבוב (בשניות):</label>
-      <input type="number" id="roundTimeInput" min="10" step="10" value="60" />
+      <input type="number" id="roundTimeInput" min="10" step="10" value="10" />
       <button id="startGameBtn">התחל משחק</button>
       <button id="resetGameBtn" style="background:#555; margin-top:6px;">אפס משחק</button>
       <button id="pauseBtn" class="pause-btn" style="background:#555; margin-top:6px;">⏸ השהה משחק</button>
@@ -231,19 +267,20 @@
       <button id="resumeBtn" class="resume-btn">▶ המשך משחק</button>
     </div>
   </div>
-  <div id="demoEnd">
-    <!-- <h2>🎉 סיימת את המשחק לדוגמה!</h2> -->
-    <p>רוצה לנסות את הגרסה המלאה עם עשרות תמונות ואתגרים?</p>
-    <button onclick="window.location.href='game.html'">🎮 שחק עכשיו</button>
+  <div id="playNowDiv">
+    <p id="text">רוצה לנסות את הגרסה המלאה עם עשרות תמונות ואתגרים?</p>
+    <div id="playNow" onclick="window.location.href='game.html'">
+      🎮 שחק עכשיו
+    </div>
   </div>
 
   <footer>
     © כל הזכויות שמורות | משחק פנטומימה חוויתי
   </footer>
 
-  <div id="tryDemoBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <!-- <div id="tryDemoBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     🔥 נסה משחק לדוגמה
-  </div>
+  </div> -->
   <audio id="endSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg" preload="auto"></audio>
   <audio id="backgroundMusic" src="./080_Back_To_Brass.mp3" loop preload="auto"></audio>
   <audio id="songAudio" preload="auto"></audio>

@@ -22,7 +22,7 @@ let scores = {};
 let currentTeamIndex = 0;
 let currentItemIndex = 0;
 let timeLeft = 0;
-let roundTime = 60;
+let roundTime = 10;
 let timerInterval = null;
 let gameStarted = false;
 let currentItems = [];
@@ -63,6 +63,8 @@ addTeamBtn.addEventListener('click', () => {
   const name = teamNameInput.value.trim();
   if (!name) return showMessage('אנא הכנס שם צוות');
   if (teams.includes(name)) return showMessage('שם הצוות כבר קיים', 'error');
+  if (teams.length > 10) return showMessage('כמות הקבוצות מוגבלת ל-10', 'error');
+
   teams.push(name);
   scores[name] = 0;
   teamNameInput.value = '';
@@ -146,11 +148,11 @@ resetGameBtn.addEventListener('click', () => {
   currentTeamIndex = 0;
   currentItemIndex = 0;
   timeLeft = 0;
-  roundTime = 60;
+  roundTime = 10;
   shownItems.clear();
 
   timerFill.style.height = '100%';
-  imageContainer.innerHTML = '<div class="prompt-text">הוסף צוותים, בחר נושא והתחל משחק</div>';
+  imageContainer.innerHTML = '<div class="prompt-text">הוסף צוותים   והתחל משחק</div>';
   teamsListDiv.innerHTML = '';
   nextBtn.disabled = true;
   correctBtn.disabled = true;
@@ -193,14 +195,14 @@ function showCurrentItem() {
 
 
 
-    const img = document.createElement('img');
-    img.src = item;
-    img.alt = 'פריט למשחק';
-    imageContainer.appendChild(img);
-    promptText.textContent = `פריט ${currentItemIndex + 1} מתוך ${currentItems.length}`;
+  const img = document.createElement('img');
+  img.src = item;
+  img.alt = 'פריט למשחק';
+  imageContainer.appendChild(img);
+  promptText.textContent = `פריט ${currentItemIndex + 1} מתוך ${currentItems.length}`;
 
-    playSongBtn.style.display = 'none';
-  
+  playSongBtn.style.display = 'none';
+
 
   correctBtn.disabled = false;
   passBtn.disabled = false;
@@ -248,11 +250,11 @@ correctBtn.addEventListener('click', () => {
     correctBtn.disabled = true;
     passBtn.disabled = true;
     nextBtn.disabled = false;
-    currentItemIndex=0;
+    currentItemIndex = 0;
     showCurrentItem();
     // playSongBtn.disabled = (phase !== 'songs');
     showMessage('נגמרו כמות הפריטים לגרסה החינמית ', 'success');
-  } 
+  }
   else {
     showCurrentItem();
   }
@@ -260,11 +262,7 @@ correctBtn.addEventListener('click', () => {
 
   renderTeams();
 
-  // בשלב השירים, להפעיל כפתור הפעל שיר אחרי "נכון"
-  if (phase === 'songs') {
-    playSongBtn.style.display = 'inline-block';
-    playSongBtn.disabled = false;
-  }
+
 });
 
 passBtn.addEventListener('click', () => {
@@ -311,7 +309,7 @@ nextBtn.addEventListener('click', () => {
     passBtn.disabled = true;
     playSongBtn.style.display = 'none';
     endDemo();
-    return; 
+    return;
   }
 
 
@@ -338,11 +336,7 @@ nextBtn.addEventListener('click', () => {
 
 });
 
-// כפתור הפעלת שיר בשלב השירים
-playSongBtn.addEventListener('click', () => {
-  if (!gameStarted || phase !== 'songs') return;
-  songAudio.play();
-});
+
 
 // הצגת הזוכים בסיום שלב חפצים והמשך לשלב שירים
 // function showWinnersOverlay() {
@@ -450,37 +444,23 @@ async function timeOutFun() {
     return;
   }
   currentTeamIndex++;
-  if (phase === 'objects' && currentTeamIndex >= teams.length && !second) {
+  if (phase === 'objects' && currentTeamIndex >= teams.length) {
     nextlevel.style.display = 'flex';
     await new Promise(r => setTimeout(r, 20000))
     nextlevel.style.display = 'none';
 
     currentTeamIndex = 0;
-    second = true;
   }
   // currentItemIndex = 0;
 
   // אם נגמרו הזוגות בשלבי חפצים, מציגים זכייה והמשך לשלב שירים
-  if (phase === 'objects' && currentTeamIndex >= teams.length && second) {
+  if (phase === 'objects' && currentTeamIndex >= teams.length) {
     showWinnersOverlay();
     return;
   }
 
   // בשלב שירים, אם נגמרו הזוגות - מסיימים משחק
-  if (phase === 'songs' && currentTeamIndex >= teams.length) {
-    gameStarted = false;
-    const sorted = [...teams].sort((a, b) => scores[b] - scores[a]);
-    const topCount = 1
-    const threshold = scores[sorted[topCount - 1]];
-    winner = sorted.filter(name => scores[name] >= threshold);
-    sessionStorage.setItem('winner', winner);
-    window.location.href = "gameOver.html";
-    nextBtn.disabled = true;
-    correctBtn.disabled = true;
-    passBtn.disabled = true;
-    playSongBtn.style.display = 'none';
-    return;
-  }
+
 
   // טוענים את הפריטים שנותרו עבור הזוג הבא
   prepareItems();

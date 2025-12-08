@@ -1,19 +1,24 @@
 <!doctype html>
 <html lang="he">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>תשלום לגישה למשחק — 50 ש״ח</title>
+  <title>תשלום לגישה למשחק — 35 ש״ח</title>
   <style>
     :root {
       --bg: #0f1724;
       --card: #0b1220;
       --accent: #6ee7b7;
       --muted: #9aa6b2;
-      --glass: rgba(255,255,255,0.03);
+      --glass: rgba(255, 255, 255, 0.03);
       --radius: 12px;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -26,59 +31,131 @@
       direction: rtl;
       padding: 24px;
     }
+
+    .btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: linear-gradient(90deg, #ff7b00, #ffb347);
+      color: white;
+      border-radius: 50px;
+      padding: 15px 25px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite ease-in-out;
+      cursor: pointer;
+    }
+
     .card {
       width: 100%;
       max-width: 720px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
       border-radius: var(--radius);
       padding: 28px;
-      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
-      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
+
     .header {
-      display:flex;
-      gap:16px;
-      align-items:center;
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
+
     .logo {
-      width:64px; height:64px; border-radius:10px;
-      background: linear-gradient(135deg,#04293a,#03506f);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:700; font-size:22px; color:white;
-      box-shadow: inset 0 -6px 20px rgba(0,0,0,0.25);
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #04293a, #03506f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 22px;
+      color: white;
+      box-shadow: inset 0 -6px 20px rgba(0, 0, 0, 0.25);
     }
-    h1 { margin:0; font-size:20px; }
-    p.lead { margin:6px 0 0 0; color:var(--muted); }
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    p.lead {
+      margin: 6px 0 0 0;
+      color: var(--muted);
+    }
+
     .price {
-      margin-top:18px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
     }
+
     .price .left {
-      display:flex; flex-direction:column;
+      display: flex;
+      flex-direction: column;
     }
+
     .amount {
-      font-size:28px; font-weight:700; color:var(--accent);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
     }
-    .meta { color:var(--muted); font-size:14px; margin-top:4px; }
-    .paypal-area { margin-top:20px; }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .paypal-area {
+      margin-top: 20px;
+    }
+
     .support {
-      margin-top:18px;
-      font-size:13px; color:var(--muted);
-      display:flex; gap:8px; align-items:center;
+      margin-top: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
-    .support a { color:var(--accent); text-decoration:none; }
+
+    .support a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
     .small-note {
-      margin-top:10px; color:#98a9b7; font-size:12px;
+      margin-top: 10px;
+      color: #98a9b7;
+      font-size: 12px;
     }
-    footer { margin-top:18px; text-align:center; color:rgba(255,255,255,0.05); font-size:12px; }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+    }
+
     /* responsive */
     @media (max-width:520px) {
-      .header { gap:12px; }
-      .amount { font-size:22px; }
+      .header {
+        gap: 12px;
+      }
+
+      .amount {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="card" role="main" aria-labelledby="pay-title">
     <div class="header">
@@ -91,11 +168,12 @@
 
     <div class="price" aria-hidden="false">
       <div class="left">
-        <div class="amount">₪2.00</div>
-        <div class="meta">תשלום חד-פעמי — קבלת גישה למשחק</div>
+        <div class="amount">₪35.00</div>
+        <div class="meta">תשלום חד-פעמי — קבלת גישה למשחק </div>
       </div>
       <div style="text-align:left">
-        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal" style="height:44px;">
+        <img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_111x69.jpg" alt="PayPal"
+          style="height:44px;">
       </div>
     </div>
 
@@ -115,20 +193,20 @@
 
   <!-- החליפי את YOUR_CLIENT_ID ב-Client ID שלך מ-PayPal -->
 
-  <script src="https://www.paypal.com/sdk/js?client-id=AazuZz8j61b15i80RzjF3qUjC5Q0JqJMG44MCHisD08ts6QcveX4MHOOEQHvRKiLIMX1IXJB0ThK2eYO&currency=ILS"></script>
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=AazuZz8j61b15i80RzjF3qUjC5Q0JqJMG44MCHisD08ts6QcveX4MHOOEQHvRKiLIMX1IXJB0ThK2eYO&currency=ILS"></script>
 
   <script>
- 
+
     // הגדרות — החליפי לפי הצורך
-    const AMOUNT = '2.00'; // סכום בשקלים
+    const AMOUNT = '35.00'; // סכום בשקלים
     const CURRENCY = 'ILS';
     const GAME_URL = 'game.html'; // הכתובת שיעבור אליה המשתמש לאחר הצלחה
     const SUPPORT_EMAIL = 'pantomimagame1@gmail.com';
-   if (sessionStorage.getItem('paidForGame') === 'true') {
-    console.log("i pay");
-    
-  window.location.href = GAME_URL;
-}
+    if (localStorage.getItem('paidForGame') === 'true') {
+
+      window.location.href = GAME_URL;
+    }
     // הצגת המייל באופן דינמי
     document.getElementById('supportEmail').href = 'mailto:' + SUPPORT_EMAIL;
     document.getElementById('supportEmail').textContent = SUPPORT_EMAIL;
@@ -140,7 +218,7 @@
         layout: 'vertical',
         label: 'paypal'
       },
-      createOrder: function(data, actions) {
+      createOrder: function (data, actions) {
         return actions.order.create({
           purchase_units: [{
             amount: {
@@ -156,18 +234,18 @@
           }
         });
       },
-      onApprove: function(data, actions) {
+      onApprove: function (data, actions) {
         // לכידת התשלום (client-side)
-        return actions.order.capture().then(function(details) {
+        return actions.order.capture().then(function (details) {
           // כאן ניתן להציג הודעת תודה קצרה לפני המעבר
           // אבל נבצע הפנייה ישירה לדף המשחק
           // ניתן להעביר פרמטרים ב-querystring אם צריך (למשל: orderID)
           const orderId = data.orderID;
-            sessionStorage.setItem('paidForGame', 'true');
-    sessionStorage.setItem('orderID', data.orderID);
+          localStorage.setItem('paidForGame', 'true');
+          localStorage.setItem('orderID', data.orderID);
           // מפנה לדף המשחק עם מזהה הזמנה (לשימוש עתידי)
           window.location.href = GAME_URL;
-        }).catch(function(err) {
+        }).catch(function (err) {
           // שגיאה בלכידת תשלום
           alert('התשלום לא הושלם בהצלחה. אם הבעיה נמשכת פנו ל: ' + SUPPORT_EMAIL);
           console.error('capture error', err);
@@ -182,5 +260,8 @@
       }
     }).render('#paypal-button-container');
   </script>
+  <button class="btn" onclick="window.location.href='index.html'">🏠 חזרה לעמוד הבית</button>
+
 </body>
+
 </html>
