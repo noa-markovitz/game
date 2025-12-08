@@ -84,19 +84,19 @@ const pauseOverlay = document.getElementById('pauseOverlay');
 const resumeBtn = document.getElementById('resumeBtn');
 const pauseAudio = document.getElementById('pauseAudio');
 // הוספת צוותים
-document.addEventListener('DOMContentLoaded', function() {
-  const paid = localStorage.getItem('paidForGame');
-  console.log(paid);
+// document.addEventListener('DOMContentLoaded', function() {
+//   const paid = localStorage.getItem('paidForGame');
+//   console.log(paid);
   
-  if (paid === 'true') {
-    // אפשר להמשיך ולהציג את המשחק
-    console.log('התשלום מאומת — כאן נטען המשחק');
-    // … קוד המשחק …
-  } else {
-    // אם לא שילם – החזר לדף התשלום
-    window.location.href = 'payment.html';
-  }
-});
+//   if (paid === 'true') {
+//     // אפשר להמשיך ולהציג את המשחק
+//     console.log('התשלום מאומת — כאן נטען המשחק');
+//     // … קוד המשחק …
+//   } else {
+//     // אם לא שילם – החזר לדף התשלום
+//     window.location.href = 'payment.html';
+//   }
+// });
 addTeamBtn.addEventListener('click', () => {
   const name = teamNameInput.value.trim();
   if (!name) return showMessage('אנא הכנס שם צוות');
